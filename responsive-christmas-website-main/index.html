@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!--=============== FAVICON ===============-->
+        <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+
+        <!--=============== BOXICONS ===============-->
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+
+        <!--=============== SWIPER CSS ===============--> 
+        <link rel="stylesheet" href="assets/css/swiper-bundle.min.css">
+
+        <!--=============== CSS ===============-->
+        <link rel="stylesheet" href="assets/css/styles.css">
+
+        <title>Responsive Christmas Website</title>
+        <meta name="description" content="A festive responsive Christmas website featuring smooth animations, holiday gift ideas, celebration highlights, and dark/light mode toggle.">
+        <meta property="og:title" content="Responsive Christmas Website">
+        <meta property="og:description" content="A festive responsive Christmas website featuring smooth animations, holiday gift ideas, celebration highlights, and dark/light mode toggle.">
+    </head>
+    <body>
+        <!--==================== CANVAS FX ====================-->
+        <canvas id="snow-canvas"></canvas>
+        <canvas id="confetti-canvas"></canvas>
+
+        <!--==================== HEADER ====================-->
+        <header class="header" id="header">
+            <nav class="nav container">
+                <a href="#" class="nav__logo" id="nav-logo">
+                    <img src="assets/img/logo.png" alt="Christmas Logo" class="nav__logo-img"> 
+                    Christmas
+                </a>
+
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item">
+                            <a href="#home" class="nav__link active-link" id="nav-link-home">Home</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#celebrate" class="nav__link" id="nav-link-celebrate">Celebrate</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#gift" class="nav__link" id="nav-link-gift">Gifts</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#new" class="nav__link" id="nav-link-new">New</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="#message" class="nav__link" id="nav-link-message">Wishes</a>
+                        </li>
+                    </ul>
+
+                    <div class="nav__close" id="nav-close">
+                        <i class='bx bx-x' ></i>
+                    </div>
+
+                    <img src="assets/img/nav-light.png" alt="Nav Decoration" class="nav__img">
+                </div>
+                <div class="nav__btns">
+                    <!-- Snowfall toggle button -->
+                    <button class="nav__action-btn active" id="snow-button" title="Toggle Falling Snow" aria-label="Toggle Falling Snow">
+                        <i class='bx bx-snowflake'></i>
+                    </button>
+
+                    <!-- Festive music synth button -->
+                    <button class="nav__action-btn" id="music-button" title="Holiday Jingle Bells Chime" aria-label="Holiday Jingle Bells Chime">
+                        <i class='bx bx-music'></i>
+                    </button>
+
+                    <!-- Wishlist button -->
+                    <button class="nav__action-btn" id="wishlist-button" title="View Wishlist" aria-label="View Wishlist">
+                        <i class='bx bx-heart'></i>
+                        <span class="nav__badge" id="wishlist-badge">0</span>
+                    </button>
+
+                    <!-- Cart / Gift Bag button -->
+                    <button class="nav__action-btn" id="cart-button" title="View Gift Bag" aria-label="View Gift Bag">
+                        <i class='bx bx-shopping-bag'></i>
+                        <span class="nav__badge" id="cart-badge">0</span>
+                    </button>
+
+                    <!-- Theme change button -->
+                    <i class='bx bx-moon change-theme' id="theme-button" title="Toggle Theme" role="button" tabindex="0"></i>
+
+                    <!-- Toggle button -->
+                    <div class="nav__toggle" id="nav-toggle" role="button" tabindex="0" aria-label="Open menu">
+                        <i class='bx bx-grid-alt' ></i>
+                    </div>
+                </div>
+
+            </nav>
+        </header>
+
+        <!--==================== MAIN ====================-->
+        <main class="main">
+            <!--==================== HOME ====================-->
+            <section class="home" id="home">
+                <div class="home__container container grid">
+                    <img src="assets/img/home.png" alt="Santa and Christmas Gift" class="home__img">
+
+                    <div class="home__data">
+                        <h1 class="home__title">Merry Christmas and <br> Happy New Year!</h1>
+                        <p class="home__description">
+                            Christmas and a magical new year is about to begin. Share joyful moments, warm blessings, and delightful surprises with those you cherish.
+                        </p>
+                        <a href="#gift" class="button" id="home-get-started">Explore Gifts</a>
+
+                        <!-- Countdown Timer -->
+                        <div class="home__countdown" id="home-countdown">
+                            <div class="countdown__header">
+                                <i class='bx bx-time-five countdown__icon'></i>
+                                <span>Christmas Day Countdown</span>
+                            </div>
+                            <div class="countdown__grid">
+                                <div class="countdown__box">
+                                    <span class="countdown__num" id="cd-days">00</span>
+                                    <span class="countdown__txt">Days</span>
+                                </div>
+                                <span class="countdown__colon">:</span>
+                                <div class="countdown__box">
+                                    <span class="countdown__num" id="cd-hours">00</span>
+                                    <span class="countdown__txt">Hours</span>
+                                </div>
+                                <span class="countdown__colon">:</span>
+                                <div class="countdown__box">
+                                    <span class="countdown__num" id="cd-mins">00</span>
+                                    <span class="countdown__txt">Mins</span>
+                                </div>
+                                <span class="countdown__colon">:</span>
+                                <div class="countdown__box">
+                                    <span class="countdown__num" id="cd-secs">00</span>
+                                    <span class="countdown__txt">Secs</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== GIVING ====================-->
+            <section class="giving section container">
+                <h2 class="section__title">
+                    Start Giving This <br> Christmas
+                </h2>
+
+                <div class="giving__container grid">
+                    <div class="giving__content" id="giving-card-1">
+                        <img src="assets/img/giving1.png" alt="Surprise Gifts" class="giving__img">
+                        <h3 class="giving__title">Surprise gifts</h3>
+                        <p class="giving__description">They are the sweetest surprises that spark holiday wonder.</p>
+                    </div>
+
+                    <div class="giving__content" id="giving-card-2">
+                        <img src="assets/img/giving2.png" alt="Ornaments" class="giving__img">
+                        <h3 class="giving__title">Ornaments</h3>
+                        <p class="giving__description">Handcrafted trinkets to decorate memories together.</p>
+                    </div>
+
+                    <div class="giving__content" id="giving-card-3">
+                        <img src="assets/img/giving3.png" alt="Lots of Love" class="giving__img">
+                        <h3 class="giving__title">Lots of love</h3>
+                        <p class="giving__description">Warm feelings, heartfelt cards, and memories that last forever.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== CELEBRATE ====================-->
+            <section class="celebrate section container" id="celebrate">
+                <div class="celebrate__container grid">
+                    <div class="celebrate__data">
+                        <h2 class="section__title celebrate__title">
+                            Celebrate With A <br> Lot Of Love
+                        </h2>
+                        <p class="celebrate__description">
+                            In these cozy winter holidays, celebrate with peace, hope, and kindness. Offer thoughtful blessings to your loved ones, dear friends, and neighbors near and far.
+                        </p>
+                        <a href="#message" class="button" id="celebrate-send-wishes">Send Good Wishes</a>
+                    </div>
+
+                    <img src="assets/img/celebrate.png" alt="Christmas Celebration" class="celebrate__img">
+                </div>
+            </section>
+
+            <!--==================== GIFT ====================-->
+            <section class="gift section container" id="gift">
+                <h2 class="section__title">Share A Gift</h2>
+
+                <!-- Gift Filter & Search -->
+                <div class="gift__filter-wrap">
+                    <div class="gift__pills" id="gift-pills">
+                        <button class="gift__pill active" data-filter="all" id="pill-all">All Gifts</button>
+                        <button class="gift__pill" data-filter="treats" id="pill-treats">Sweet Treats</button>
+                        <button class="gift__pill" data-filter="decor" id="pill-decor">Decorations</button>
+                        <button class="gift__pill" data-filter="wear" id="pill-wear">Apparel</button>
+                        <button class="gift__pill" data-filter="under25" id="pill-under25">Under $25</button>
+                    </div>
+                    <div class="gift__search-box">
+                        <i class='bx bx-search gift__search-icon'></i>
+                        <input type="text" id="gift-search-input" class="gift__search-input" placeholder="Search holiday gifts...">
+                    </div>
+                </div>
+
+                <div class="gift__container grid" id="gift-container">
+                    <article class="gift__card" data-id="gift-1" data-title="Gingerbread" data-price="15" data-category="treats" data-img="assets/img/gift1.png" data-desc="Freshly baked artisan holiday gingerbread spiced with cinnamon, clove, and royal icing." data-badge="Bestseller">
+                        <span class="gift__badge">Bestseller</span>
+                        <img src="assets/img/gift1.png" alt="Gingerbread" class="gift__img">
+                        <i class='bx bx-heart gift__icon' title="Save to Wishlist" role="button" tabindex="0"></i>
+                        
+                        <h3 class="gift__price">$15</h3>
+                        <span class="gift__title">Gingerbread</span>
+
+                        <div class="gift__bottom">
+                            <button class="gift__btn-add" title="Add to Gift Bag">
+                                <i class='bx bx-shopping-bag'></i> Add
+                            </button>
+                            <button class="gift__btn-view" title="Quick View">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="gift__card" data-id="gift-2" data-title="Santa Claus Hat" data-price="22" data-category="wear" data-img="assets/img/gift2.png" data-desc="Plush velvet Santa hat with ultra-soft faux fur trim and fluffy pom-pom." data-badge="Cozy Wear">
+                        <span class="gift__badge">Cozy Wear</span>
+                        <img src="assets/img/gift2.png" alt="Santa Claus Hat" class="gift__img">
+                        <i class='bx bx-heart gift__icon' title="Save to Wishlist" role="button" tabindex="0"></i>
+                        
+                        <h3 class="gift__price">$22</h3>
+                        <span class="gift__title">Santa Claus Hat</span>
+
+                        <div class="gift__bottom">
+                            <button class="gift__btn-add" title="Add to Gift Bag">
+                                <i class='bx bx-shopping-bag'></i> Add
+                            </button>
+                            <button class="gift__btn-view" title="Quick View">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="gift__card" data-id="gift-3" data-title="Christmas Tree" data-price="48" data-category="decor" data-img="assets/img/gift3.png" data-desc="Mini tabletop evergreen Christmas tree pre-lit with warm golden LED fairy lights." data-badge="Festive Decor">
+                        <span class="gift__badge">Festive Decor</span>
+                        <img src="assets/img/gift3.png" alt="Christmas Tree" class="gift__img">
+                        <i class='bx bx-heart gift__icon' title="Save to Wishlist" role="button" tabindex="0"></i>
+                        
+                        <h3 class="gift__price">$48</h3>
+                        <span class="gift__title">Christmas Tree</span>
+
+                        <div class="gift__bottom">
+                            <button class="gift__btn-add" title="Add to Gift Bag">
+                                <i class='bx bx-shopping-bag'></i> Add
+                            </button>
+                            <button class="gift__btn-view" title="Quick View">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="gift__card" data-id="gift-4" data-title="Snowman" data-price="35" data-category="decor" data-img="assets/img/gift4.png" data-desc="Handcrafted ceramic frosty snowman figurine with knitted red scarf and button details." data-badge="Handmade">
+                        <span class="gift__badge">Handmade</span>
+                        <img src="assets/img/gift4.png" alt="Snowman" class="gift__img">
+                        <i class='bx bx-heart gift__icon' title="Save to Wishlist" role="button" tabindex="0"></i>
+                        
+                        <h3 class="gift__price">$35</h3>
+                        <span class="gift__title">Snowman</span>
+
+                        <div class="gift__bottom">
+                            <button class="gift__btn-add" title="Add to Gift Bag">
+                                <i class='bx bx-shopping-bag'></i> Add
+                            </button>
+                            <button class="gift__btn-view" title="Quick View">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </article>
+
+                    <article class="gift__card" data-id="gift-5" data-title="Candy Stick" data-price="12" data-category="treats" data-img="assets/img/gift5.png" data-desc="Bundle of traditional peppermint twisted candy canes wrapped in scarlet holiday ribbons." data-badge="Sweet Pick">
+                        <span class="gift__badge">Sweet Pick</span>
+                        <img src="assets/img/gift5.png" alt="Candy Stick" class="gift__img">
+                        <i class='bx bx-heart gift__icon' title="Save to Wishlist" role="button" tabindex="0"></i>
+                        
+                        <h3 class="gift__price">$12</h3>
+                        <span class="gift__title">Candy Stick</span>
+
+                        <div class="gift__bottom">
+                            <button class="gift__btn-add" title="Add to Gift Bag">
+                                <i class='bx bx-shopping-bag'></i> Add
+                            </button>
+                            <button class="gift__btn-view" title="Quick View">
+                                <i class='bx bx-show'></i>
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!--==================== NEW ====================-->
+            <section class="new section container" id="new">
+                <h2 class="section__title">New Gifts</h2>
+
+                <div class="new__container">
+                    <div class="swiper new-swiper">
+                        <div class="swiper-wrapper">
+                            <article class="new__card swiper-slide" data-id="new-1" data-title="Reindeer" data-price="95" data-img="assets/img/new1.png" data-desc="Deluxe illuminated Nordic reindeer ornament with polished golden antlers.">
+                                <div class="new__overlay"></div>
+
+                                <img src="assets/img/new1.png" alt="Reindeer" class="new__img">
+                                <h3 class="new__price">$95</h3>
+                                <span class="new__title">Reindeer</span>
+                                
+                                <div class="new__card-actions">
+                                    <button class="new__add-bag-btn" title="Add to Bag">
+                                        <i class='bx bx-shopping-bag'></i> Add to Bag
+                                    </button>
+                                </div>
+
+                                <button class="button new__button" title="Save to Wishlist">
+                                    <i class='bx bx-heart new__icon'></i>
+                                </button>
+                            </article>
+
+                            <article class="new__card swiper-slide" data-id="new-2" data-title="Snow Globe" data-price="20" data-img="assets/img/new2.png" data-desc="Enchanting musical snow globe with spinning miniature Christmas village and floating snowflakes.">
+                                <div class="new__overlay"></div>
+
+                                <img src="assets/img/new2.png" alt="Snow Globe" class="new__img">
+                                <h3 class="new__price">$20</h3>
+                                <span class="new__title">Snow Globe</span>
+
+                                <div class="new__card-actions">
+                                    <button class="new__add-bag-btn" title="Add to Bag">
+                                        <i class='bx bx-shopping-bag'></i> Add to Bag
+                                    </button>
+                                </div>
+
+                                <button class="button new__button" title="Save to Wishlist">
+                                    <i class='bx bx-heart new__icon'></i>
+                                </button>
+                            </article>
+
+                            <article class="new__card swiper-slide" data-id="new-3" data-title="Sledge" data-price="75" data-img="assets/img/new3.png" data-desc="Classic handcrafted wooden sled with vintage crimson runners and braided pull rope.">
+                                <div class="new__overlay"></div>
+
+                                <img src="assets/img/new3.png" alt="Sledge" class="new__img">
+                                <h3 class="new__price">$75</h3>
+                                <span class="new__title">Sledge</span>
+
+                                <div class="new__card-actions">
+                                    <button class="new__add-bag-btn" title="Add to Bag">
+                                        <i class='bx bx-shopping-bag'></i> Add to Bag
+                                    </button>
+                                </div>
+
+                                <button class="button new__button" title="Save to Wishlist">
+                                    <i class='bx bx-heart new__icon'></i>
+                                </button>
+                            </article>
+
+                            <article class="new__card swiper-slide" data-id="new-4" data-title="Christmas Wreath" data-price="15" data-img="assets/img/new4.png" data-desc="Aromatic fresh pine door wreath adorned with natural pinecones, red berries, and satin bow.">
+                                <div class="new__overlay"></div>
+
+                                <img src="assets/img/new4.png" alt="Christmas Wreath" class="new__img">
+                                <h3 class="new__price">$15</h3>
+                                <span class="new__title">Christmas Wreath</span>
+
+                                <div class="new__card-actions">
+                                    <button class="new__add-bag-btn" title="Add to Bag">
+                                        <i class='bx bx-shopping-bag'></i> Add to Bag
+                                    </button>
+                                </div>
+
+                                <button class="button new__button" title="Save to Wishlist">
+                                    <i class='bx bx-heart new__icon'></i>
+                                </button>
+                            </article>
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!--==================== MESSAGE / POSTCARD GENERATOR ====================-->
+            <section class="message section container" id="message">
+                <div class="message__container grid">
+                    <form action="#" class="message__form" id="wishes-form">
+                        <h2 class="message__title">Send Holiday <br> Postcards & Wishes!</h2>
+                        
+                        <!-- Greeting Presets -->
+                        <div class="message__presets" id="message-presets">
+                            <span class="message__preset-chip active" data-greeting="Merry Christmas and Happy New Year!">Merry Christmas</span>
+                            <span class="message__preset-chip" data-greeting="Wishing you peaceful, warm & joyful holidays!">Peace & Joy</span>
+                            <span class="message__preset-chip" data-greeting="May your winter season sparkle with love and wonder!">Sparkling Cheer</span>
+                        </div>
+
+                        <div class="message__form-fields">
+                            <div class="message__input-row">
+                                <input type="text" id="msg-to" placeholder="To: Family, Friends, or Colleague" class="message__field" required>
+                                <input type="text" id="msg-from" placeholder="From: Santa's Helper" class="message__field" required>
+                            </div>
+                            <textarea id="msg-text" placeholder="Write your heartfelt Christmas greeting..." class="message__field message__textarea" rows="3" required>Merry Christmas and Happy New Year! Wishing you and your loved ones peace, warmth, and boundless joy in the coming year.</textarea>
+                            <input type="email" id="msg-email" placeholder="Recipient's Email (optional)" class="message__field">
+                        </div>
+
+                        <div class="message__button-group">
+                            <button type="submit" class="button message__button" id="btn-send-wishes">
+                                <i class='bx bx-paper-plane'></i> Send Good Wishes
+                            </button>
+                            <button type="button" class="message__btn-secondary" id="btn-preview-card">
+                                <i class='bx bx-show'></i> Preview Card
+                            </button>
+                        </div>
+                    </form>
+
+                    <img src="assets/img/message.png" alt="Message Letter" class="message__img">
+                </div>
+            </section>
+        </main>
+
+        <!--==================== FOOTER ====================-->
+        <footer class="footer section">
+            <div class="footer__container container grid">
+                <div>
+                    <a href="#" class="footer__logo">
+                        <img src="assets/img/logo.png" alt="Logo" class="footer__logo-img"> 
+                        Christmas
+                    </a>
+
+                    <p class="footer__description">
+                        This Christmas give <br> warmth, smiles and a lot of love
+                    </p>
+                </div>
+
+                <div>
+                    <h3 class="footer__title">Our Services</h3>
+
+                    <ul class="footer__links">
+                        <li>
+                            <a href="#gift" class="footer__link">Holiday Catalog</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link" id="footer-discounts-link">Discounts & Promos</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link" id="footer-shipping-link">Shipping & Deadlines</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer__title">Support</h3>
+
+                    <ul class="footer__links">
+                        <li>
+                            <a href="#" class="footer__link" id="footer-faq-link">Holiday FAQs</a>
+                        </li>
+                        <li>
+                            <a href="#" class="footer__link" id="footer-support-link">Support center</a>
+                        </li>
+                        <li>
+                            <a href="#message" class="footer__link">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="footer__title">Available On</h3>
+
+                    <div class="footer__aviables">
+                        <img src="assets/img/aviable1.png" alt="App Store" class="footer__aviable-img">
+                        <img src="assets/img/aviable2.png" alt="Google Play" class="footer__aviable-img">
+                    </div>
+                </div>
+
+                <img src="assets/img/footer1.png" alt="Gift Box" class="footer__img1">
+                <img src="assets/img/footer2.png" alt="Christmas Decoration" class="footer__img2">
+            </div>
+
+            <span class="footer__copy">&#169; Christmas Magic. All rights reserved. Crafted with holiday joy! 🎄</span>
+        </footer>
+
+        <!--=============== DRAWERS & MODALS ===============-->
+        <!-- Wishlist Drawer -->
+        <div class="drawer-backdrop" id="wishlist-backdrop"></div>
+        <div class="drawer-panel" id="wishlist-drawer">
+            <div class="drawer-header">
+                <h3 class="drawer-title"><i class='bx bx-heart'></i> My Wishlist</h3>
+                <button class="modal-close-btn" id="close-wishlist" aria-label="Close wishlist"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="drawer-body" id="wishlist-items-container">
+                <!-- Wishlist items dynamically populated -->
+            </div>
+            <div class="drawer-footer">
+                <button class="button" id="move-all-cart-btn" style="width: 100%;">
+                    <i class='bx bx-shopping-bag'></i> Move All to Gift Bag
+                </button>
+            </div>
+        </div>
+
+        <!-- Cart Drawer -->
+        <div class="drawer-backdrop" id="cart-backdrop"></div>
+        <div class="drawer-panel" id="cart-drawer">
+            <div class="drawer-header">
+                <h3 class="drawer-title"><i class='bx bx-shopping-bag'></i> Holiday Gift Bag</h3>
+                <button class="modal-close-btn" id="close-cart" aria-label="Close cart"><i class='bx bx-x'></i></button>
+            </div>
+            <div class="drawer-body" id="cart-items-container">
+                <!-- Cart items dynamically populated -->
+            </div>
+            <div class="drawer-footer" id="cart-footer">
+                <div class="cart-coupon-box">
+                    <input type="text" id="cart-coupon" class="cart-coupon-input" placeholder="Promo code (e.g. SANTA25)">
+                    <button class="cart-coupon-btn" id="apply-coupon-btn">Apply</button>
+                </div>
+                <label class="cart-wrap-option">
+                    <input type="checkbox" id="gift-wrap-check" checked>
+                    <span>🎁 Add free holiday gift wrapping & ribbon</span>
+                </label>
+                <div class="cart-summary-row">
+                    <span>Subtotal</span>
+                    <span id="cart-subtotal">$0.00</span>
+                </div>
+                <div class="cart-summary-row" id="cart-discount-row" style="display: none; color: var(--first-color);">
+                    <span>Holiday Promo (25% off)</span>
+                    <span id="cart-discount">-$0.00</span>
+                </div>
+                <div class="cart-summary-row cart-summary-total">
+                    <span>Total</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button class="button" id="checkout-btn" style="width: 100%; margin-top: 1rem;">
+                    <i class='bx bx-gift'></i> Complete Gift Order
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick View Modal -->
+        <div class="modal-backdrop" id="quickview-modal">
+            <div class="modal-content">
+                <button class="modal-close-btn" id="close-quickview" aria-label="Close modal"><i class='bx bx-x'></i></button>
+                <div style="text-align: center;">
+                    <span class="gift__badge" id="qv-badge" style="position: static; display: inline-block; margin-bottom: 1rem;">Festive</span>
+                    <img src="assets/img/gift1.png" alt="Gift Image" id="qv-img" style="width: 140px; margin: 0 auto 1.25rem; display: block;">
+                    <h3 id="qv-title" style="font-size: var(--h2-font-size); color: var(--title-color); margin-bottom: .4rem;">Gingerbread</h3>
+                    <div style="color: #f59e0b; margin-bottom: .75rem; font-size: 1.1rem;">
+                        <i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i><i class='bx bxs-star'></i>
+                        <span style="font-size: var(--small-font-size); color: var(--text-color); margin-left: .25rem;">(4.9/5 holiday rating)</span>
+                    </div>
+                    <p id="qv-desc" style="font-size: var(--small-font-size); color: var(--text-color); line-height: 1.6; margin-bottom: 1.5rem;">
+                        Freshly baked artisan holiday gingerbread spiced with cinnamon, clove, and royal icing.
+                    </p>
+                    <div style="display: flex; align-items: center; justify-content: space-between; border-top: 1px solid hsla(355, 4%, 50%, 0.15); padding-top: 1.25rem;">
+                        <span id="qv-price" style="font-size: 1.5rem; font-weight: 700; color: var(--first-color);">$15</span>
+                        <div style="display: flex; gap: .5rem;">
+                            <button class="button" id="qv-add-cart"><i class='bx bx-shopping-bag'></i> Add to Bag</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Postcard Modal -->
+        <div class="modal-backdrop" id="postcard-modal">
+            <div class="modal-content" style="max-width: 560px;">
+                <button class="modal-close-btn" id="close-postcard" aria-label="Close postcard modal"><i class='bx bx-x'></i></button>
+                <div class="postcard">
+                    <div class="postcard__stamp">NORTH POLE<br>POSTAGE</div>
+                    <h3 class="postcard__greeting" id="pc-greeting">Merry Christmas!</h3>
+                    <div class="postcard__to" id="pc-to">To: Dear Friends</div>
+                    <p class="postcard__message" id="pc-message">Wishing you joyful holidays filled with warmth and smiles!</p>
+                    <div class="postcard__from" id="pc-from">With love, Santa's Helper</div>
+                </div>
+                <div style="display: flex; gap: .75rem; margin-top: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="button" id="pc-copy-btn"><i class='bx bx-copy'></i> Copy Greeting</button>
+                    <button class="message__btn-secondary" id="pc-burst-btn" style="background: var(--first-color);"><i class='bx bx-party'></i> Celebrate!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Celebration Modal -->
+        <div class="modal-backdrop" id="checkout-modal">
+            <div class="modal-content" style="text-align: center;">
+                <button class="modal-close-btn" id="close-checkout" aria-label="Close checkout modal"><i class='bx bx-x'></i></button>
+                <div style="font-size: 4rem; margin-bottom: .75rem;">🎅✨</div>
+                <h3 style="font-size: var(--h2-font-size); color: var(--title-color); margin-bottom: .5rem;">Order Placed with Santa's Elves!</h3>
+                <p style="font-size: var(--small-font-size); color: var(--text-color); line-height: 1.6; margin-bottom: 1.5rem;">
+                    Thank you! Your holiday gifts are being carefully wrapped with ribbons and bells. Guaranteed delivery before Christmas Eve!
+                </p>
+                <div style="background: hsla(355, 70%, 54%, 0.08); border-radius: .75rem; padding: 1rem; margin-bottom: 1.5rem; text-align: left;">
+                    <div style="display: flex; justify-content: space-between; font-size: var(--small-font-size); margin-bottom: .25rem;">
+                        <strong>Delivery Tracking:</strong> <span style="color: var(--first-color);">#SANTA-2026-XMAS</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; font-size: var(--small-font-size);">
+                        <strong>Estimated Arrival:</strong> <span>Dec 24, Express Sleigh</span>
+                    </div>
+                </div>
+                <button class="button" id="checkout-done-btn" style="width: 100%;">Keep Browsing</button>
+            </div>
+        </div>
+
+        <!-- FAQ Modal -->
+        <div class="modal-backdrop" id="faq-modal">
+            <div class="modal-content" style="max-width: 580px;">
+                <button class="modal-close-btn" id="close-faq" aria-label="Close FAQ modal"><i class='bx bx-x'></i></button>
+                <h3 style="font-size: var(--h2-font-size); color: var(--title-color); margin-bottom: .5rem; display: flex; align-items: center; gap: .5rem;">
+                    <i class='bx bx-help-circle' style="color: var(--first-color);"></i> Holiday FAQs & Support
+                </h3>
+                <p style="font-size: var(--small-font-size); color: var(--text-color); margin-bottom: 1rem;">
+                    Everything you need to know about Christmas shipping, gift wrapping, and holiday returns.
+                </p>
+                <div class="faq-accordion">
+                    <div class="faq-item active">
+                        <div class="faq-question">
+                            <span>What is the Christmas delivery cut-off?</span>
+                            <i class='bx bx-chevron-down faq-icon'></i>
+                        </div>
+                        <div class="faq-answer">
+                            Standard shipping orders must be placed by December 18. Express Santa Sleigh shipping is available through December 23 for guaranteed Christmas Eve arrival.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Is holiday gift wrapping complimentary?</span>
+                            <i class='bx bx-chevron-down faq-icon'></i>
+                        </div>
+                        <div class="faq-answer">
+                            Yes! Every order includes complimentary red-and-gold gift box packaging with a handcrafted festive satin ribbon and a personalized holiday card.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>Can I schedule delivery on a specific date?</span>
+                            <i class='bx bx-chevron-down faq-icon'></i>
+                        </div>
+                        <div class="faq-answer">
+                            Absolutely. During checkout, you can select your desired delivery window, including early surprise deliveries or directly on Christmas Eve.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <span>What is your extended holiday return policy?</span>
+                            <i class='bx bx-chevron-down faq-icon'></i>
+                        </div>
+                        <div class="faq-answer">
+                            All holiday purchases made between November 1 and December 25 can be exchanged or returned with zero restocking fees until January 31.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Toast Notifications Container -->
+        <div class="toast-container" id="toast-container"></div>
+
+
+        <!--=============== SCROLL UP ===============-->
+        <a href="#" class="scrollup" id="scroll-up"> 
+            <i class='bx bx-up-arrow-alt scrollup__icon' ></i>
+        </a>
+
+        <!--=============== SCROLL REVEAL ===============-->
+        <script src="assets/js/scrollreveal.min.js"></script>
+
+        <!--=============== SWIPER JS ===============-->
+        <script src="assets/js/swiper-bundle.min.js"></script>
+
+        <!--=============== MAIN JS ===============-->
+        <script src="assets/js/main.js"></script>
+    </body>
+</html>

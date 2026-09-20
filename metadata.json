@@ -1,0 +1,6 @@
+{
+  "name": "Responsive Christmas Website",
+  "description": "A festive responsive Christmas website featuring smooth animations, holiday gift ideas, celebration highlights, and dark/light mode toggle.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
